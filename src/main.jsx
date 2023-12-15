@@ -9,8 +9,10 @@ import {
 } from "react-router-dom";
 import * as poseApi from "./api/poses.jsx";
 import { ErrorPage } from "./components/error-page.jsx";
+import Layout from "./components/layout.jsx";
 import "./index.css";
 import Root from "./root.jsx";
+import Index from "./routes/index.jsx";
 import Pose from "./routes/pose.jsx";
 import Poses from "./routes/poses.jsx";
 
@@ -26,33 +28,36 @@ let router = createBrowserRouter(
       }
     >
       <Route errorElement={<ErrorPage />}>
-        <Route
-          index
-          element={<Poses />}
-          loader={() => {
-            let poseListItems = poseApi.getAll();
+        <Route index element={<Index />} />
+        <Route element={<Layout />}>
+          <Route
+            path="poses"
+            element={<Poses />}
+            loader={() => {
+              let poseListItems = poseApi.getAll();
 
-            return { poseListItems };
-          }}
-        />
-        <Route
-          path="poses/:poseId"
-          element={<Pose />}
-          loader={({ params }) => {
-            let pose = poseApi.getById(params.poseId);
-            if (!pose) {
-              throw json(
-                { pose },
-                {
-                  status: 404,
-                  statusText: `Pose by id "${params.poseId}" not found`,
-                },
-              );
-            }
+              return { poseListItems };
+            }}
+          />
+          <Route
+            path="poses/:poseId"
+            element={<Pose />}
+            loader={({ params }) => {
+              let pose = poseApi.getById(params.poseId);
+              if (!pose) {
+                throw json(
+                  { pose },
+                  {
+                    status: 404,
+                    statusText: `Pose by id "${params.poseId}" not found`,
+                  },
+                );
+              }
 
-            return { pose };
-          }}
-        />
+              return { pose };
+            }}
+          />
+        </Route>
       </Route>
     </Route>,
   ),

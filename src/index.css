@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: InterVariable, sans-serif;
+    font-feature-settings:
+      "liga" 1,
+      "calt" 1; /* fix for Chrome */
+  }
+}

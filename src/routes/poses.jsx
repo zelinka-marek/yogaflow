@@ -16,8 +16,8 @@ export default function Poses() {
             className="group relative flex items-center gap-6 py-5"
           >
             <pose.icon className="h-12 w-auto flex-none text-amber-600" />
-            <p className="flex-auto truncate text-sm font-semibold leading-6 text-gray-900">
-              <Link to={`pose/${pose.id}`}>
+            <p className="flex-auto truncate text-sm/6 font-semibold text-gray-900">
+              <Link to={`poses/${pose.id}`}>
                 <span className="absolute inset-x-0 -top-px bottom-0" />
                 {pose.name}
               </Link>

@@ -5,11 +5,13 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
+  json,
 } from "react-router-dom";
-import { getAllPoses } from "./api/poses.jsx";
+import * as poseApi from "./api/poses.jsx";
 import { ErrorPage } from "./components/error-page.jsx";
 import "./index.css";
 import Root from "./root.jsx";
+import Pose from "./routes/pose.jsx";
 import Poses from "./routes/poses.jsx";
 
 let router = createBrowserRouter(
@@ -28,9 +30,27 @@ let router = createBrowserRouter(
           index
           element={<Poses />}
           loader={() => {
-            let poseListItems = getAllPoses();
+            let poseListItems = poseApi.getAll();
 
             return { poseListItems };
+          }}
+        />
+        <Route
+          path="poses/:poseId"
+          element={<Pose />}
+          loader={({ params }) => {
+            let pose = poseApi.getById(params.poseId);
+            if (!pose) {
+              throw json(
+                { pose },
+                {
+                  status: 404,
+                  statusText: `Pose by id "${params.poseId}" not found`,
+                },
+              );
+            }
+
+            return { pose };
           }}
         />
       </Route>

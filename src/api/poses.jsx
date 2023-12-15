@@ -249,11 +249,11 @@ let poseData = [
   },
 ];
 
-export function getAllPoses() {
+export function getAll() {
   return poseData;
 }
 
-export function getPoseById(id) {
+export function getById(id) {
   let pose = poseData.find((pose) => pose.id === id);
 
   return pose;

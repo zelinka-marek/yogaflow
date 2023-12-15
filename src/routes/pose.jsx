@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import { PoseTimer } from "../components/pose-timer.jsx";
 
 export default function Pose() {
   let { pose } = useLoaderData();
@@ -14,6 +15,7 @@ export default function Pose() {
           <p className="text-sm font-medium text-gray-600">{pose.asana}</p>
         </div>
       </div>
+      <PoseTimer />
       <div>
         <p className="mt-6 text-sm/6 text-gray-700">{pose.description}</p>
         <h2 className="mt-6 text-base font-semibold leading-7 text-gray-900">

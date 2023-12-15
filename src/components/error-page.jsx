@@ -1,5 +1,5 @@
 import { useRouteError } from "react-router-dom";
-import { getErrorMessage } from "../utils.js";
+import { getErrorMessage } from "../utils/misc.js";
 
 export function ErrorPage() {
   let error = useRouteError();

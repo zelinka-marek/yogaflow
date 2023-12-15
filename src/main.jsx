@@ -6,23 +6,34 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import "./index.css";
 import { getAllPoses } from "./api/poses.jsx";
+import { ErrorPage } from "./components/error-page.jsx";
+import "./index.css";
 import Root from "./root.jsx";
 import Poses from "./routes/poses.jsx";
 
 let router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Root />}>
-      <Route
-        index
-        element={<Poses />}
-        loader={() => {
-          let poseListItems = getAllPoses();
+    <Route
+      path="/"
+      element={<Root />}
+      errorElement={
+        <div className="flex h-full items-center justify-center">
+          <ErrorPage />
+        </div>
+      }
+    >
+      <Route errorElement={<ErrorPage />}>
+        <Route
+          index
+          element={<Poses />}
+          loader={() => {
+            let poseListItems = getAllPoses();
 
-          return { poseListItems };
-        }}
-      />
+            return { poseListItems };
+          }}
+        />
+      </Route>
     </Route>,
   ),
   {

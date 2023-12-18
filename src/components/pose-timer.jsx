@@ -1,11 +1,12 @@
 import { useState } from "react";
+import useSound from "use-sound";
+import chimeSfx from "../assets/chime.mp3";
 import { useCountdownTimer } from "../utils/use-countdown-timer.js";
 
 function OpenPoseTimer() {
+  const [play] = useSound(chimeSfx);
   const { seconds, running, isDone, start, pause, restart } = useCountdownTimer(
-    {
-      initialSeconds: 30,
-    },
+    { initialSeconds: 5, onDone: () => play() },
   );
   const countdown = `00:${seconds.toString().padStart(2, "0")}`;
 

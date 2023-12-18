@@ -6,7 +6,7 @@ import { useCountdownTimer } from "../utils/use-countdown-timer.js";
 function OpenPoseTimer() {
   const [play] = useSound(chimeSfx);
   const { seconds, running, isDone, start, pause, restart } = useCountdownTimer(
-    { initialSeconds: 5, onDone: () => play() },
+    { initialSeconds: 30, onDone: () => play() },
   );
   const countdown = `00:${seconds.toString().padStart(2, "0")}`;
 

@@ -1,13 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function useCountdownTimer({
-  initialSeconds = 30,
   initiallyRunning = false,
+  initialSeconds = 30,
 } = {}) {
-  let [seconds, setSeconds] = useState(initialSeconds);
-  let [running, setRunning] = useState(initiallyRunning);
-
-  let isDone = seconds === 0;
+  const [running, setRunning] = useState(initiallyRunning);
+  const [seconds, setSeconds] = useState(initialSeconds);
+  const isDone = seconds === 0;
 
   function start() {
     return setRunning(true);
@@ -17,16 +16,16 @@ export function useCountdownTimer({
     return setRunning(false);
   }
 
-  let restart = useCallback(() => {
+  function restart() {
     setSeconds(initialSeconds);
     setRunning(false);
-  }, [initialSeconds]);
+  }
 
   useEffect(() => {
-    let intervalId = setInterval(() => {
+    const intervalId = setInterval(() => {
       if (running) {
         setSeconds((seconds) => {
-          let nextSeconds = seconds - 1;
+          const nextSeconds = seconds - 1;
           if (nextSeconds === 0) {
             pause();
           }
@@ -37,7 +36,7 @@ export function useCountdownTimer({
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [restart, running]);
+  }, [running]);
 
   return { seconds, running, isDone, start, pause, restart };
 }

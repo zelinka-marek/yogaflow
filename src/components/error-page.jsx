@@ -2,9 +2,8 @@ import { useRouteError } from "react-router-dom";
 import { getErrorMessage } from "../utils/misc.js";
 
 export function ErrorPage() {
-  let error = useRouteError();
-
-  let errorMessage = getErrorMessage(error);
+  const error = useRouteError();
+  const errorMessage = getErrorMessage(error);
   console.error(errorMessage);
 
   return (

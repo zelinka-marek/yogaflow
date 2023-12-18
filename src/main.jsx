@@ -16,7 +16,7 @@ import Index from "./routes/index.jsx";
 import Pose from "./routes/pose.jsx";
 import Poses from "./routes/poses.jsx";
 
-let router = createBrowserRouter(
+const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
       path="/"
@@ -34,7 +34,7 @@ let router = createBrowserRouter(
             path="poses"
             element={<Poses />}
             loader={() => {
-              let poseListItems = poseApi.getAll();
+              const poseListItems = poseApi.getAll();
 
               return { poseListItems };
             }}
@@ -43,7 +43,7 @@ let router = createBrowserRouter(
             path="poses/:poseId"
             element={<Pose />}
             loader={({ params }) => {
-              let pose = poseApi.getById(params.poseId);
+              const pose = poseApi.getById(params.poseId);
               if (!pose) {
                 throw json(
                   { pose },

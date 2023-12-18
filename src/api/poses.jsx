@@ -1,4 +1,4 @@
-let poseData = [
+const poseData = [
   {
     id: "1",
     name: "Downward-Facing Dog",
@@ -254,7 +254,7 @@ export function getAll() {
 }
 
 export function getById(id) {
-  let pose = poseData.find((pose) => pose.id === id);
+  const pose = poseData.find((pose) => pose.id === id);
 
   return pose;
 }

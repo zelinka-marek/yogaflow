@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useCountdownTimer } from "../utils/use-countdown-timer.js";
 
 function OpenPoseTimer() {
-  let { seconds, running, isDone, start, pause, restart } = useCountdownTimer({
-    initialSeconds: 30,
-  });
-  let countdown = `00:${seconds.toString().padStart(2, "0")}`;
+  const { seconds, running, isDone, start, pause, restart } = useCountdownTimer(
+    {
+      initialSeconds: 30,
+    },
+  );
+  const countdown = `00:${seconds.toString().padStart(2, "0")}`;
 
   return (
     <div className="mx-auto max-w-xs px-8">
@@ -49,7 +51,7 @@ function ClosedPoseTimer({ onOpen }) {
 }
 
 export function PoseTimer() {
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5">

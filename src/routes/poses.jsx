@@ -2,7 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 
 export default function PosesIndex() {
-  let { poseListItems } = useLoaderData();
+  const { poseListItems } = useLoaderData();
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:px-8">

@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import { PoseTimer } from "../components/pose-timer.jsx";
 
 export default function Pose() {
-  let { pose } = useLoaderData();
+  const { pose } = useLoaderData();
 
   return (
     <>

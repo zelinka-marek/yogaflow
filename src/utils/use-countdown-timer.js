@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export function useCountdownTimer({
   initiallyRunning = false,
   initialSeconds = 30,
+  onDone,
 } = {}) {
   const [running, setRunning] = useState(initiallyRunning);
   const [seconds, setSeconds] = useState(initialSeconds);
@@ -28,6 +29,7 @@ export function useCountdownTimer({
           const nextSeconds = seconds - 1;
           if (nextSeconds === 0) {
             pause();
+            onDone();
           }
 
           return nextSeconds;
@@ -36,7 +38,7 @@ export function useCountdownTimer({
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [running]);
+  }, [onDone, running]);
 
   return { seconds, running, isDone, start, pause, restart };
 }

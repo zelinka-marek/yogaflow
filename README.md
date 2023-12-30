@@ -1,6 +1,8 @@
 # YogaFlow
 
-This project is a cat-themed yoga app,
+This project is a cat-themed yoga app.
+
+![](https://github.com/zelinka-marek/yogaflow/assets/97283432/ef40b822-a709-49b1-938c-c27168fb7d77)
 
 [LIVE DEMO](https://yogaflow-mzelinka17.vercel.app/)
 
